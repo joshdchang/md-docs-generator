@@ -5,3 +5,5 @@
 *.log
 .env
 .env.local
+
+# index.html is required by Vite but will be completely replaced by the plugin

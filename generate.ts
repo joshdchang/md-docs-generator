@@ -45,6 +45,107 @@ export function extractHeadings(markdown: string): Heading[] {
   return headings;
 }
 
+// Custom rehype plugin to add copy buttons to code blocks
+function rehypeAddCopyButtons() {
+  return (tree: any) => {
+    visit(tree, 'element', (node: any, index: number | undefined, parent: any) => {
+      if (node.tagName === 'pre' && node.children?.[0]?.tagName === 'code') {
+        // Create a wrapper div with the copy button
+        const wrapper = {
+          type: 'element',
+          tagName: 'div',
+          properties: { className: ['code-block-wrapper'] },
+          children: [
+            // Keep the original pre element
+            { ...node },
+            {
+              type: 'element',
+              tagName: 'button',
+              properties: {
+                className: ['copy-button'],
+                'aria-label': 'Copy code',
+                'data-copied': 'false'
+              },
+              children: [
+                {
+                  type: 'element',
+                  tagName: 'svg',
+                  properties: {
+                    className: ['copy-icon'],
+                    xmlns: 'http://www.w3.org/2000/svg',
+                    width: '16',
+                    height: '16',
+                    viewBox: '0 0 24 24',
+                    fill: 'none',
+                    stroke: 'currentColor',
+                    'stroke-width': '2',
+                    'stroke-linecap': 'round',
+                    'stroke-linejoin': 'round'
+                  },
+                  children: [
+                    {
+                      type: 'element',
+                      tagName: 'rect',
+                      properties: {
+                        x: '9',
+                        y: '9',
+                        width: '13',
+                        height: '13',
+                        rx: '2',
+                        ry: '2'
+                      },
+                      children: []
+                    },
+                    {
+                      type: 'element',
+                      tagName: 'path',
+                      properties: {
+                        d: 'M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1'
+                      },
+                      children: []
+                    }
+                  ]
+                },
+                {
+                  type: 'element',
+                  tagName: 'svg',
+                  properties: {
+                    className: ['check-icon'],
+                    xmlns: 'http://www.w3.org/2000/svg',
+                    width: '16',
+                    height: '16',
+                    viewBox: '0 0 24 24',
+                    fill: 'none',
+                    stroke: 'currentColor',
+                    'stroke-width': '2',
+                    'stroke-linecap': 'round',
+                    'stroke-linejoin': 'round'
+                  },
+                  children: [
+                    {
+                      type: 'element',
+                      tagName: 'polyline',
+                      properties: {
+                        points: '20 6 9 17 4 12'
+                      },
+                      children: []
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        };
+        
+        // Replace the node in the parent's children array
+        if (parent && index !== undefined) {
+          parent.children[index] = wrapper;
+        }
+      }
+    });
+  };
+}
+
 // Convert markdown to HTML
 export async function markdownToHtml(markdown: string): Promise<string> {
   const result = await unified()
@@ -54,6 +155,7 @@ export async function markdownToHtml(markdown: string): Promise<string> {
     .use(rehypeRaw)
     .use(rehypeSlug)
     .use(rehypeHighlight)
+    .use(rehypeAddCopyButtons)
     .use(rehypeStringify)
     .process(markdown);
 
@@ -67,11 +169,11 @@ export function generateTocHtml(headings: Heading[]): string {
       const depthClass = h.depth > 2 ? `depth${h.depth}` : "";
       const indent =
         h.depth > 2
-          ? `<div class="navIndent" style="left: ${
+          ? /*html*/ `<div class="navIndent" style="left: ${
               (h.depth - 2) * 14 - 5
             }px"></div>`
           : "";
-      return `
+      return /*html*/ `
       <li class="navItem">
         <a href="#${h.id}" class="navLink ${depthClass}">
           ${indent}
@@ -91,7 +193,7 @@ export function generateHtmlBody(
 ): string {
   const { title = "Docs", logo = "" } = config;
 
-  return `
+  return /*html*/ `
     <div class="container">
       <input type="checkbox" id="sidebar-toggle" class="sidebar-toggle-input" />
       

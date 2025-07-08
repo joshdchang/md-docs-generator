@@ -3,9 +3,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "vite build",
-    "dev": "vite",
-    "preview": "vite preview",
+    "build": "bun run build.ts",
+    "dev": "bun run dev.ts",
+    "start": "bun run serve.ts",
     "typecheck": "tsc"
   },
   "dependencies": {
@@ -22,6 +22,7 @@
     "unist-util-visit": "^5.0.0"
   },
   "devDependencies": {
+    "@types/bun": "^1.2.18",
     "@types/node": "^20",
     "rollup": "^4.29.0",
     "tsx": "^4.7.0",

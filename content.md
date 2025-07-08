@@ -4,7 +4,7 @@
   <p align="center">
   <a href="https://zod.dev">zod.dev</a>
   <br/>
-    TypeScript-first schema validation with static type inference
+    TypeScript-first schema validation with static type inference.
   </p>
 </p>
 <p align="center">

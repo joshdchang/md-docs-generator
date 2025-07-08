@@ -932,3 +932,80 @@ html {
 .dark .hljs-strong {
   font-weight: bold;
 }
+
+/* Code block wrapper for copy button */
+.code-block-wrapper {
+  position: relative;
+  margin-top: 0;
+  margin-bottom: 16px;
+}
+
+.code-block-wrapper pre {
+  margin: 0;
+}
+
+/* Copy button */
+.copy-button {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  padding: 6px;
+  border: 1px solid rgba(27, 31, 35, 0.15);
+  border-radius: 6px;
+  background-color: #f6f8fa;
+  color: #57606a;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s, background-color 0.2s, transform 0.2s;
+}
+
+.dark .copy-button {
+  border-color: #30363d;
+  background-color: #21262d;
+  color: #8b949e;
+}
+
+.code-block-wrapper:hover .copy-button {
+  opacity: 1;
+}
+
+.copy-button:hover {
+  background-color: #f3f4f6;
+  color: #24292e;
+  transform: scale(1.05);
+}
+
+.dark .copy-button:hover {
+  background-color: #30363d;
+  color: #e1e4e8;
+}
+
+.copy-button:active {
+  transform: scale(0.95);
+}
+
+/* Copy and check icons */
+.copy-icon,
+.check-icon {
+  display: block;
+  width: 16px;
+  height: 16px;
+}
+
+.check-icon {
+  display: none;
+  color: #28a745;
+}
+
+.dark .check-icon {
+  color: #3fb950;
+}
+
+/* Show check icon when copied */
+.copy-button[data-copied="true"] .copy-icon {
+  display: none;
+}
+
+.copy-button[data-copied="true"] .check-icon {
+  display: block;
+}

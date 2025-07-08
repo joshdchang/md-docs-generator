@@ -1,3 +1,5 @@
+import "./styles.css";
+
 // Dark mode toggle functionality
 function initDarkMode() {
   const themeToggle = document.getElementById("theme-toggle");
@@ -63,8 +65,39 @@ function initSmoothScroll() {
   });
 }
 
+// Copy code functionality
+function initCopyCode() {
+  const copyButtons = document.querySelectorAll(".copy-button");
+  
+  copyButtons.forEach((button) => {
+    button.addEventListener("click", async () => {
+      const codeBlock = button.parentElement?.querySelector("pre code");
+      if (!codeBlock) return;
+      
+      try {
+        // Get the text content from the code block
+        const text = codeBlock.textContent || "";
+        
+        // Copy to clipboard
+        await navigator.clipboard.writeText(text);
+        
+        // Update button state
+        button.setAttribute("data-copied", "true");
+        
+        // Reset after 2 seconds
+        setTimeout(() => {
+          button.setAttribute("data-copied", "false");
+        }, 2000);
+      } catch (err) {
+        console.error("Failed to copy code:", err);
+      }
+    });
+  });
+}
+
 // Initialize when DOM is ready
 document.addEventListener("DOMContentLoaded", () => {
   initDarkMode();
   initSmoothScroll();
+  initCopyCode();
 });
