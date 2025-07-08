@@ -7,7 +7,8 @@
   color: #24292e;
 }
 
-.container.dark {
+.container.dark,
+.dark .container {
   background-color: #0a0a0a;
   color: #e1e4e8;
 }
@@ -191,7 +192,7 @@
     height: 100vh;
     transform: translateX(0) !important;
   }
-  
+
   /* Hide mobile-only elements on desktop */
   .sidebar-toggle-label {
     display: none;
@@ -260,7 +261,8 @@
   border: 1px solid #d1d5da;
   border-radius: 3px;
   box-shadow: inset 0 -1px 0 #d1d5da;
-  font-family: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Consolas,
+    "Liberation Mono", Menlo, monospace;
 }
 
 .dark .kbd {
@@ -456,50 +458,6 @@
   color: #818cf8;
 }
 
-/* Alternative circular toggle style */
-.themeToggleAlt {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  padding: 0;
-  border: 1px solid #d1d5da;
-  border-radius: 50%;
-  background-color: transparent;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.dark .themeToggleAlt {
-  border-color: #30363d;
-}
-
-.themeToggleAlt:hover {
-  background-color: rgba(27, 31, 35, 0.08);
-  border-color: #8b949e;
-}
-
-.dark .themeToggleAlt:hover {
-  background-color: rgba(110, 118, 129, 0.2);
-  border-color: #6e7681;
-}
-
-.themeToggleAlt .themeIcon {
-  position: static;
-  transform: none;
-  width: 20px;
-  height: 20px;
-}
-
-.themeToggleAlt .themeIcon.light {
-  color: #f59e0b;
-}
-
-.themeToggleAlt .themeIcon:not(.light) {
-  color: #8b5cf6;
-}
-
 /* Content wrapper */
 .contentWrapper {
   display: flex;
@@ -530,65 +488,6 @@
   .article {
     padding: 48px;
   }
-}
-
-/* Hero section */
-.hero {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  margin-bottom: 32px;
-}
-
-.heroTitle {
-  margin: 0 0 8px;
-  font-size: 32px;
-  font-weight: 600;
-}
-
-.heroSubtitle {
-  margin: 0 0 16px;
-  color: #57606a;
-}
-
-.dark .heroSubtitle {
-  color: #8b949e;
-}
-
-.heroBadges {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 4px;
-  padding: 8px 0;
-}
-
-.heroBadges a {
-  border: none;
-}
-
-.heroBadges img {
-  height: 20px;
-}
-
-.heroLinks {
-  display: flex;
-  justify-content: center;
-  gap: 4px;
-}
-
-.heroLinks a {
-  color: #0969da;
-  text-decoration: none;
-}
-
-.heroLinks a:hover {
-  text-decoration: underline;
-}
-
-.dark .heroLinks a {
-  color: #58a6ff;
 }
 
 /* Markdown content - GitHub styles */
@@ -877,4 +776,136 @@
 .dark .editLink:hover {
   background-color: rgba(110, 118, 129, 0.2);
   color: #e1e4e8;
+}
+
+/* Global reset and base styles */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d1d5da;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #959da5;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #484f58;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #6a737d;
+}
+
+/* Smooth anchor scrolling */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
+}
+
+/* Override highlight.js colors for dark mode */
+.dark .hljs {
+  color: #e1e4e8;
+  background: #161b22;
+}
+
+.dark .hljs-comment,
+.dark .hljs-quote {
+  color: #8b949e;
+}
+
+.dark .hljs-keyword,
+.dark .hljs-selector-tag,
+.dark .hljs-subst {
+  color: #ff7b72;
+}
+
+.dark .hljs-number,
+.dark .hljs-literal,
+.dark .hljs-variable,
+.dark .hljs-template-variable,
+.dark .hljs-tag .hljs-attr {
+  color: #79c0ff;
+}
+
+.dark .hljs-string,
+.dark .hljs-doctag {
+  color: #a5d6ff;
+}
+
+.dark .hljs-title,
+.dark .hljs-section,
+.dark .hljs-selector-id {
+  color: #d2a8ff;
+}
+
+.dark .hljs-type,
+.dark .hljs-class .hljs-title {
+  color: #ff7b72;
+}
+
+.dark .hljs-tag,
+.dark .hljs-name,
+.dark .hljs-attribute {
+  color: #7ee83f;
+}
+
+.dark .hljs-regexp,
+.dark .hljs-link {
+  color: #a5d6ff;
+}
+
+.dark .hljs-symbol,
+.dark .hljs-bullet {
+  color: #79c0ff;
+}
+
+.dark .hljs-built_in,
+.dark .hljs-builtin-name {
+  color: #79c0ff;
+}
+
+.dark .hljs-meta {
+  color: #79c0ff;
+}
+
+.dark .hljs-deletion {
+  color: #ffdcd7;
+  background: #67060c;
+}
+
+.dark .hljs-addition {
+  color: #aff5b4;
+  background: #033a16;
+}
+
+.dark .hljs-emphasis {
+  font-style: italic;
+}
+
+.dark .hljs-strong {
+  font-weight: bold;
 }
