@@ -5,8 +5,7 @@
   "scripts": {
     "build": "bun run build.ts",
     "dev": "bun run dev.ts",
-    "start": "bun run serve.ts",
-    "typecheck": "tsc"
+    "start": "bun run serve.ts"
   },
   "dependencies": {
     "highlight.js": "^11.11.1",

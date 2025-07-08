@@ -55,7 +55,6 @@ A fast, modern documentation generator that converts markdown files into beautif
 | `bun run dev` | Start development server with hot reload |
 | `bun run build` | Build static files for production |
 | `bun run start` | Serve built files (production mode) |
-| `bun run typecheck` | Run TypeScript type checking |
 
 ## Writing Documentation
 
