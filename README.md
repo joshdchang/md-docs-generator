@@ -106,15 +106,15 @@ For images that should change based on the theme:
 ```
 md-docs-generator/
 ├── config.ts          # Site configuration
-├── content.md          # Your markdown documentation
+├── content.md         # Your markdown documentation
 ├── main.ts            # Frontend JavaScript (theme, search, etc.)
 ├── styles.css         # Styles for the documentation site
 ├── generate.ts        # Markdown processing and HTML generation
-├── build.ts          # Production build script
-├── dev.ts            # Development server with hot reload
-├── serve.ts          # Production server
-├── public/           # Static assets (copied to dist/)
-└── dist/            # Built files (generated)
+├── build.ts           # Production build script
+├── dev.ts             # Development server with hot reload
+├── serve.ts           # Production server
+├── public/            # Static assets (copied to dist/)
+└── dist/              # Built files (generated)
 ```
 
 ## Configuration Options
