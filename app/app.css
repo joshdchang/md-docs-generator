@@ -1,40 +1,15 @@
-@import "tailwindcss";
-@plugin "@tailwindcss/typography";
-
-@theme {
-  --font-sans: ui-sans-serif, system-ui, sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
-  
-  /* Zod-inspired color palette */
-  --color-primary-50: #ecfdf5;
-  --color-primary-100: #d1fae5;
-  --color-primary-200: #a7f3d0;
-  --color-primary-300: #6ee7b7;
-  --color-primary-400: #34d399;
-  --color-primary-500: #10b981;
-  --color-primary-600: #059669;
-  --color-primary-700: #047857;
-  --color-primary-800: #065f46;
-  --color-primary-900: #064e3b;
-  
-  /* Custom spacing */
-  --spacing-nav: 4rem;
-  --spacing-sidebar: 16rem;
-  --spacing-toc: 14rem;
+/* Global reset and base styles */
+* {
+  box-sizing: border-box;
 }
 
-/* Base styles */
-html,
 body {
-  @apply bg-white dark:bg-[#0a0a0a];
-  @apply text-gray-900 dark:text-gray-100;
-  @apply antialiased;
-  scroll-behavior: smooth;
-
-  @media (prefers-color-scheme: dark) {
-    color-scheme: dark;
-  }
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+  font-size: 16px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Custom scrollbar */
@@ -44,121 +19,113 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  @apply bg-transparent;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-gray-300 dark:bg-gray-700 rounded;
+  background: #d1d5da;
+  border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-gray-400 dark:bg-gray-600;
+  background: #959da5;
 }
 
-/* Selection */
-::selection {
-  @apply bg-primary-200 dark:bg-primary-800/30 text-primary-900 dark:text-primary-100;
+.dark ::-webkit-scrollbar-thumb {
+  background: #484f58;
 }
 
-/* Focus styles */
-:focus-visible {
-  @apply outline-none ring-2 ring-primary-500 ring-offset-2 ring-offset-white dark:ring-offset-gray-900;
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #6a737d;
 }
 
-/* Typography overrides */
-.prose {
-  @apply max-w-none;
+/* Smooth anchor scrolling */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
 }
 
-.prose :where(a):not(:where([class~="not-prose"] *)) {
-  @apply text-primary-600 dark:text-primary-400 no-underline hover:underline;
+/* Override highlight.js colors for dark mode */
+.dark .hljs {
+  color: #e1e4e8;
+  background: #161b22;
 }
 
-.prose :where(code):not(:where([class~="not-prose"] *)) {
-  @apply bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 px-1.5 py-0.5 rounded font-mono text-sm;
+.dark .hljs-comment,
+.dark .hljs-quote {
+  color: #8b949e;
 }
 
-.prose :where(pre):not(:where([class~="not-prose"] *)) {
-  @apply bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800;
+.dark .hljs-keyword,
+.dark .hljs-selector-tag,
+.dark .hljs-subst {
+  color: #ff7b72;
 }
 
-/* Navigation link styles */
-.nav-link {
-  @apply flex items-center gap-2 px-3 py-1.5 rounded-md text-sm transition-colors;
-  @apply text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100;
-  @apply hover:bg-gray-100 dark:hover:bg-gray-800;
+.dark .hljs-number,
+.dark .hljs-literal,
+.dark .hljs-variable,
+.dark .hljs-template-variable,
+.dark .hljs-tag .hljs-attr {
+  color: #79c0ff;
 }
 
-.nav-link-active {
-  @apply bg-primary-100 dark:bg-primary-900/20 text-primary-700 dark:text-primary-300;
-  @apply hover:bg-primary-100 dark:hover:bg-primary-900/20;
+.dark .hljs-string,
+.dark .hljs-doctag {
+  color: #a5d6ff;
 }
 
-/* Code block styles */
-.code-block {
-  @apply relative group my-6;
+.dark .hljs-title,
+.dark .hljs-section,
+.dark .hljs-selector-id {
+  color: #d2a8ff;
 }
 
-.code-block pre {
-  @apply m-0 rounded-lg overflow-x-auto;
-  @apply bg-gray-900 dark:bg-gray-950 text-gray-100;
-  @apply p-4 text-sm leading-relaxed;
+.dark .hljs-type,
+.dark .hljs-class .hljs-title {
+  color: #ff7b72;
 }
 
-.code-block code {
-  @apply bg-transparent p-0 text-inherit font-mono;
+.dark .hljs-tag,
+.dark .hljs-name,
+.dark .hljs-attribute {
+  color: #7ee83f;
 }
 
-.code-copy-button {
-  @apply absolute top-3 right-3 p-1.5 rounded;
-  @apply bg-gray-700 dark:bg-gray-800 text-white;
-  @apply opacity-0 group-hover:opacity-100 transition-all duration-200;
-  @apply hover:bg-gray-600 dark:hover:bg-gray-700;
-  @apply cursor-pointer;
+.dark .hljs-regexp,
+.dark .hljs-link {
+  color: #a5d6ff;
 }
 
-.code-copy-button svg {
-  @apply w-4 h-4;
+.dark .hljs-symbol,
+.dark .hljs-bullet {
+  color: #79c0ff;
 }
 
-.code-copy-button .check-icon {
-  @apply text-green-400;
+.dark .hljs-built_in,
+.dark .hljs-builtin-name {
+  color: #79c0ff;
 }
 
-/* Banner styles */
-.banner {
-  @apply bg-gradient-to-r from-primary-500 to-primary-600;
-  @apply text-white px-4 py-3 text-center text-sm font-medium;
+.dark .hljs-meta {
+  color: #79c0ff;
 }
 
-/* Layout utilities */
-.layout-container {
-  @apply max-w-[90rem] mx-auto;
+.dark .hljs-deletion {
+  color: #ffdcd7;
+  background: #67060c;
 }
 
-/* Sidebar styles */
-.sidebar-section {
-  @apply mb-6;
+.dark .hljs-addition {
+  color: #aff5b4;
+  background: #033a16;
 }
 
-.sidebar-title {
-  @apply text-xs font-semibold uppercase tracking-wider text-gray-500 dark:text-gray-400 mb-2 px-3;
+.dark .hljs-emphasis {
+  font-style: italic;
 }
 
-/* Responsive utilities */
-@media (max-width: 1024px) {
-  .layout-container {
-    @apply px-0;
-  }
+.dark .hljs-strong {
+  font-weight: bold;
 }
 
-/* Hide scrollbars on mobile */
-@media (max-width: 768px) {
-  .prose pre {
-    @apply -mx-4 rounded-none;
-  }
-  
-  .code-block pre {
-    @apply rounded-none;
-  }
-}
