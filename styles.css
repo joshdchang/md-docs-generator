@@ -1,9 +1,3 @@
-/* Global transitions for dark mode */
-* {
-  transition: background-color 0.3s ease, color 0.3s ease,
-    border-color 0.3s ease, fill 0.3s ease, stroke 0.3s ease;
-}
-
 /* Specific elements that need different transitions */
 a,
 button,
@@ -243,7 +237,7 @@ code,
 
 /* Search button */
 .searchButton {
-  display: inline-flex;
+  display: none;
   align-items: center;
   gap: 8px;
   width: 100%;
@@ -255,6 +249,12 @@ code,
   font-size: 14px;
   cursor: pointer;
   transition: all 0.15s;
+}
+
+@media (min-width: 768px) {
+  .searchButton {
+    display: inline-flex;
+  }
 }
 
 .dark .searchButton {
@@ -539,6 +539,7 @@ code,
   font-weight: 600;
   line-height: 1.25;
   scroll-margin-top: 80px;
+  position: relative;
 }
 
 .markdown h1 {
@@ -1008,4 +1009,319 @@ html {
 
 .copy-button[data-copied="true"] .check-icon {
   display: block;
+}
+
+/* Search Overlay and Popover */
+.searchOverlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 100;
+  backdrop-filter: blur(2px);
+  animation: fadeIn 0.2s ease-out;
+}
+
+.searchOverlay.active {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 10vh;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.searchPopover {
+  width: 90%;
+  max-width: 600px;
+  max-height: 70vh;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-direction: column;
+  animation: slideIn 0.2s ease-out;
+}
+
+.dark .searchPopover {
+  background-color: #161b22;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.3), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Search Header */
+.searchHeader {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border-bottom: 1px solid #e1e4e7;
+}
+
+.dark .searchHeader {
+  border-bottom-color: #30363d;
+}
+
+.searchInput {
+  flex: 1;
+  padding: 12px 16px;
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  color: #24292e;
+  outline: none;
+}
+
+.dark .searchInput {
+  color: #e1e4e8;
+}
+
+.searchInput::placeholder {
+  color: #6e7781;
+}
+
+.dark .searchInput::placeholder {
+  color: #8b949e;
+}
+
+.searchClose {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: #57606a;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.searchClose:hover {
+  background-color: rgba(27, 31, 35, 0.08);
+  color: #24292e;
+}
+
+.dark .searchClose:hover {
+  background-color: rgba(110, 118, 129, 0.2);
+  color: #e1e4e8;
+}
+
+/* Search Results */
+.searchResults {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px;
+}
+
+.searchEmpty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  color: #6e7781;
+  text-align: center;
+}
+
+.dark .searchEmpty {
+  color: #8b949e;
+}
+
+.searchEmpty svg {
+  margin-bottom: 16px;
+}
+
+.searchEmpty p {
+  margin: 0;
+  font-size: 14px;
+}
+
+/* Search Result Items */
+.searchResultItem {
+  display: block;
+  padding: 12px 16px;
+  margin-bottom: 4px;
+  border-radius: 6px;
+  background-color: transparent;
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.searchResultItem:hover,
+.searchResultItem.selected {
+  background-color: #f6f8fa;
+}
+
+.dark .searchResultItem:hover,
+.dark .searchResultItem.selected {
+  background-color: rgba(110, 118, 129, 0.1);
+}
+
+.searchResultTitle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 4px;
+  font-weight: 500;
+  color: #24292e;
+}
+
+.dark .searchResultTitle {
+  color: #e1e4e8;
+}
+
+.searchResultSection {
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  background-color: #ddf4ff;
+  color: #0969da;
+}
+
+.dark .searchResultSection {
+  background-color: rgba(56, 139, 253, 0.15);
+  color: #58a6ff;
+}
+
+.searchResultContent {
+  font-size: 13px;
+  color: #57606a;
+  line-height: 1.4;
+}
+
+.dark .searchResultContent {
+  color: #8b949e;
+}
+
+.searchResultContent mark {
+  background-color: #fff8c5;
+  color: inherit;
+  padding: 0 2px;
+  border-radius: 2px;
+}
+
+.dark .searchResultContent mark {
+  background-color: rgba(251, 243, 174, 0.2);
+}
+
+/* Search Footer */
+.searchFooter {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  border-top: 1px solid #e1e4e7;
+  font-size: 12px;
+  color: #6e7781;
+}
+
+.dark .searchFooter {
+  border-top-color: #30363d;
+  color: #8b949e;
+}
+
+.searchHint {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.searchHint .kbd {
+  font-size: 10px;
+  padding: 1px 4px;
+}
+
+/* Heading Link Buttons */
+.headingLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 8px;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: #57606a;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s, color 0.2s;
+  vertical-align: middle;
+}
+
+.dark .headingLink {
+  color: #8b949e;
+}
+
+.markdown h1:hover .headingLink,
+.markdown h2:hover .headingLink,
+.markdown h3:hover .headingLink,
+.markdown h4:hover .headingLink,
+.markdown h5:hover .headingLink,
+.markdown h6:hover .headingLink,
+.headingLink:hover {
+  opacity: 1;
+}
+
+.headingLink:hover {
+  color: #24292e;
+}
+
+.dark .headingLink:hover {
+  color: #e1e4e8;
+}
+
+.headingLink svg {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s;
+}
+
+.headingLink:hover svg {
+  transform: scale(1.1);
+}
+
+.headingLink[data-copied="true"] .link-icon {
+  display: none;
+}
+
+.headingLink[data-copied="true"] .check-icon {
+  display: block;
+  color: #28a745;
+}
+
+.dark .headingLink[data-copied="true"] .check-icon {
+  color: #3fb950;
+}
+
+.headingLink .link-icon {
+  display: block;
+}
+
+.headingLink .check-icon {
+  display: none;
 }

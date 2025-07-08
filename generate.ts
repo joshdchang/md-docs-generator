@@ -28,6 +28,15 @@ export function extractHeadings(markdown: string): Heading[] {
       if (node.type === "text") {
         return node.value;
       }
+      if (node.type === "inlineCode") {
+        return node.value;
+      }
+      if (node.type === "emphasis" || node.type === "strong") {
+        return node.children.map(extractText).join("");
+      }
+      if (node.type === "link") {
+        return node.children.map(extractText).join("");
+      }
       if (node.children) {
         return node.children.map(extractText).join("");
       }
@@ -308,6 +317,52 @@ export function generateHtmlBody(
           </article>
         </div>
       </main>
+    </div>
+    
+    <!-- Search Popover -->
+    <div id="search-overlay" class="searchOverlay">
+      <div class="searchPopover">
+        <div class="searchHeader">
+          <input 
+            type="text" 
+            id="search-input" 
+            class="searchInput" 
+            placeholder="Search documentation..."
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <button type="button" class="searchClose" aria-label="Close search">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+          </button>
+        </div>
+        <div class="searchResults" id="search-results">
+          <div class="searchEmpty">
+            <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.5">
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.3-4.3"></path>
+            </svg>
+            <p>Start typing to search</p>
+          </div>
+        </div>
+        <div class="searchFooter">
+          <div class="searchHint">
+            <kbd class="kbd">↑</kbd>
+            <kbd class="kbd">↓</kbd>
+            to navigate
+          </div>
+          <div class="searchHint">
+            <kbd class="kbd">Enter</kbd>
+            to select
+          </div>
+          <div class="searchHint">
+            <kbd class="kbd">Esc</kbd>
+            to close
+          </div>
+        </div>
+      </div>
     </div>
   `;
 }
