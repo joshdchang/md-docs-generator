@@ -83,7 +83,8 @@ function initDarkMode() {
 
 // Smooth scrolling for anchor links
 function initSmoothScroll() {
-  const offset = 80; // Offset for fixed header
+  // Responsive offset: 80px on mobile, 20px on desktop
+  const getOffset = () => window.innerWidth < 768 ? 80 : 20;
 
   document.addEventListener("click", (e) => {
     const target = e.target as HTMLElement;
@@ -99,7 +100,7 @@ function initSmoothScroll() {
       const targetElement = document.getElementById(targetId);
 
       if (targetElement) {
-        const targetPosition = targetElement.offsetTop - offset;
+        const targetPosition = targetElement.offsetTop - getOffset();
 
         window.scrollTo({
           top: targetPosition,
@@ -179,7 +180,8 @@ function initScrollSpy() {
   
   function updateHashOnScroll() {
     const scrollPosition = window.scrollY;
-    const offset = 100; // Offset for header
+    // Responsive offset: 80px on mobile, 20px on desktop
+    const offset = window.innerWidth < 768 ? 80 : 20;
     
     // Find all headings with IDs
     const headings = document.querySelectorAll("h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]");

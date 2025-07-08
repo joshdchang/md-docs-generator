@@ -116,7 +116,7 @@ code,
     content: attr(aria-label);
     position: absolute;
     bottom: 100%;
-    left: 50%;
+    left: 150%;
     transform: translateX(-50%) scale(0.8);
     padding: 4px 8px;
     margin-bottom: 4px;
@@ -542,6 +542,17 @@ code,
   position: relative;
 }
 
+@media (min-width: 768px) {
+  .markdown h1,
+  .markdown h2,
+  .markdown h3,
+  .markdown h4,
+  .markdown h5,
+  .markdown h6 {
+    scroll-margin-top: 20px;
+  }
+}
+
 .markdown h1 {
   font-size: 2em;
   border-bottom: 1px solid #d1d5da;
@@ -761,46 +772,6 @@ code,
   background-color: #30363d;
 }
 
-/* Footer */
-.footer {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 32px 0;
-}
-
-.editLink {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 8px 12px;
-  border: 1px solid #d1d5da;
-  border-radius: 6px;
-  background-color: #f6f8fa;
-  color: #57606a;
-  font-size: 14px;
-  font-weight: 500;
-  text-decoration: none;
-  transition: all 0.15s;
-}
-
-.dark .editLink {
-  border-color: #30363d;
-  background-color: rgba(110, 118, 129, 0.1);
-  color: #8b949e;
-}
-
-.editLink:hover {
-  background-color: #f3f4f6;
-  color: #24292e;
-}
-
-.dark .editLink:hover {
-  background-color: rgba(110, 118, 129, 0.2);
-  color: #e1e4e8;
-}
 
 /* Global reset and base styles */
 * {

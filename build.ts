@@ -7,7 +7,7 @@ import {
 import config from "./config";
 import { readdir, rm } from "node:fs/promises";
 
-const { contentPath, title, logo } = config;
+const { contentPath, title } = config;
 
 export async function build() {
   console.log("Building documentation...");
@@ -23,7 +23,7 @@ export async function build() {
   const headings = extractHeadings(content);
   const markdownHtml = await markdownToHtml(content);
   const tocHtml = generateTocHtml(headings);
-  const bodyContent = generateHtmlBody(markdownHtml, tocHtml, { title, logo });
+  const bodyContent = generateHtmlBody(markdownHtml, tocHtml, config);
 
   // Bundle with a single command - CSS imports are handled automatically
   console.log("Bundling with Bun...");
