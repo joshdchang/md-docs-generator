@@ -11,6 +11,7 @@ function initDarkMode() {
   if (themeToggle) {
     const isCurrentlyDark = savedTheme === "dark";
     themeToggle.setAttribute("aria-pressed", isCurrentlyDark.toString());
+    themeToggle.classList.toggle("dark", isCurrentlyDark);
   }
 
   // Toggle theme
@@ -18,6 +19,7 @@ function initDarkMode() {
     const isDark = html.classList.toggle("dark");
     localStorage.setItem("theme", isDark ? "dark" : "light");
     themeToggle.setAttribute("aria-pressed", isDark.toString());
+    themeToggle.classList.toggle("dark", isDark);
   });
 }
 

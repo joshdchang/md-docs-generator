@@ -3,7 +3,6 @@ import {
   extractHeadings,
   markdownToHtml,
   generateTocHtml,
-  generateHtmlPage,
   generateHtmlBody,
 } from "./generate";
 

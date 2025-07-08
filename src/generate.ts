@@ -83,30 +83,6 @@ export function generateTocHtml(headings: Heading[]): string {
     .join("");
 }
 
-// Generate the full HTML page
-export function generateHtmlPage(
-  markdownHtml: string,
-  tocHtml: string,
-  config: any = {}
-): string {
-  const { title = "Docs", logo = "", hero = null } = config;
-
-  return `<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${title}</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
-  <script type="module" src="/src/main.ts"></script>
-  <link rel="stylesheet" href="/src/styles.css">
-</head>
-<body>
-  ${generateHtmlBody(markdownHtml, tocHtml, { title, logo })}
-</body>
-</html>`;
-}
-
 // Generate just the body content (for dev mode)
 export function generateHtmlBody(
   markdownHtml: string,
