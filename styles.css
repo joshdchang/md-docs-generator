@@ -61,8 +61,12 @@ code,
   gap: 10px;
   font-weight: 600;
   text-decoration: none;
-  color: inherit;
+  color: #000;
   font-size: 20px;
+}
+
+.dark .logoLink {
+  color: #fff;
 }
 
 /* Hide desktop logo on mobile */

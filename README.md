@@ -23,7 +23,7 @@ A fast, modern documentation generator that converts markdown files into beautif
 
 1. **Clone and install dependencies:**
    ```bash
-   git clone <repository-url>
+   git clone https://github.com/joshdchang/md-docs-generator.git
    cd md-docs-generator
    bun install
    ```

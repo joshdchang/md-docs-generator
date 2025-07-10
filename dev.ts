@@ -24,7 +24,7 @@ const watcher = watch(config.contentPath, async (event) => {
 });
 
 // Hot reload script to inject into HTML
-const hotReloadScript = `
+const hotReloadScript = /* html */ `
 <script>
 (function() {
   const ws = new WebSocket('ws://localhost:3001');
